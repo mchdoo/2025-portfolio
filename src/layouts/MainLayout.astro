@@ -2,37 +2,38 @@
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
 
-
 const { title } = Astro.props;
-
 
 ---
 
 <script>
   import Alpine from "alpinejs";
   import collapse from "@alpinejs/collapse";
-  import gsap from 'gsap';
   import barba from "@barba/core";
-
-
+  import gsap from 'gsap';
 
   Alpine.plugin(collapse);
   Alpine.start();
 
-
 barba.init({
+  sync: true,
   transitions: [{
     name: 'opacity-transition',
     leave(data) {
       return gsap.to(data.current.container, {
-        opacity: 0
+        opacity: 0,
       });
     },
     enter(data) {
       return gsap.from(data.next.container, {
         opacity: 0,
+        y: 20,
+        stagger: 1
       })
     }
+  },
+  {
+    once() {}
   }]
 });
 
@@ -42,24 +43,22 @@ barba.init({
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <link rel="icon" href="/face_photo.png" />
     <title>
       {title === "pedro machado: portfolio" ? title : title + " | pm"}
     </title>
   </head>
-  <body data-barba="wrapper" class="absolute">
-    <header>
+  <body data-barba="wrapper" class="relative">
+    <header class="sticky layout top-0 z-50 px-3 bg-white min-h-[var(--nav-height)]">
       <Navbar />
     </header>
-    <main class="px-3 layout relative" data-barba="container">
+    <main class="px-3 layout absolute w-full left-0" data-barba="container" data-barba-namespace={{title}}>
       <span class="h-[var(--nav-height)] col-span-full"></span>
-      <slot />
+      <slot  />
       <span class="h-[var(--nav-height)] col-span-full"></span>
-    <script is:inline src="/src/scripts/p5.js"></script>
-    <script is:inline src="/src/scripts/sketch.js"></script>
+    <!-- <script is:inline src="/src/scripts/p5.js"></script>
+    <script is:inline src="/src/scripts/sketch.js"></script> -->
     </main>
   </body>
 </html>

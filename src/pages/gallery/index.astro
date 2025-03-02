@@ -1,6 +1,10 @@
 ---
 import Gallery from "../../components/Gallery.vue";
 import MainLayout from "../../layouts/MainLayout.astro";
+
+export const prerender = false;
+
+//@ts-ignore
 import { sanityClient } from 'sanity:client'
 
 const allRenders = await sanityClient.fetch(`
@@ -21,10 +25,10 @@ const allRenders = await sanityClient.fetch(`
     >, if you're looking for my professional work, click on <u>works</u> on the menu.
   </p>
 
-  <section class="layout text-xs mt-2 pt-2 border-t border-muted">
-    <h2 class="col-span-2  mb-2">Artworks</h2>
     <div class="col-span-6 text-base">
       <Gallery items={allRenders} client:only />
     </div>
-  </section>
+
+
+
 </MainLayout>

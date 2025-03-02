@@ -4,18 +4,25 @@ import alpinejs from "@astrojs/alpinejs";
 import vue from "@astrojs/vue";
 import sanity from "@sanity/astro";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   prefetch: true,
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   integrations: [
     alpinejs(),
     vue(),
     sanity({
       projectId: "vdh771pd",
       dataset: "production",
+      useCdn: true,
     }),
   ],
+
+  adapter: vercel(),
 });

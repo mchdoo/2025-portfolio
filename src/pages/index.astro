@@ -1,23 +1,67 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+
 ---
 
 <MainLayout title="pedro machado: portfolio">
-  <p class="main col-span-3 mb-12 main-col">
-    Artist and designer based in Argentina <br />
-    <br /> pedromachadofulcheri@gmail.com <br />
-    (+54) 2262 65 0401 <br />
-    @pdromchado_
+<!-- <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+  <div class="loader"></div>
+</div> -->
+  <section class="layout" x-data="{definitionVisible: false}">
+  <p class="main col-span-2 mb-12 main-col" >
+    Media artist <button @click="definitionVisible = !definitionVisible">(what is that?)</button><br />
+    <br /> <a href="mailto:pedromachadofulcheri@gmail.com" class="underline" target="_blank">email me</a> <br />
+    <a href="https://instagram.com/pdromchado_" class="underline" target="_blank">dm me</a>
   </p>
+
+    <div x-show="definitionVisible" class="col-start-4 col-span-3 sm:col-span-2 md:col-span-1" x-transition>
+            A media artist is someone who creates art using digital technology, multimedia, and various forms of electronic media. This can include video, sound, interactive installations, and digital imagery.
+        </div>
 
   <img
     src="/face_photo.png"
     alt="a picture of pedro machado"
-    class="sm:col-span-2 lg:col-span-1 col-span-3 col-start-2"
+    class="sm:col-span-2 lg:col-span-1 col-span-3 col-start-2 sm:col-start-5 md:col-start-5 lg:col-start-5"
+
+    decoding="async"
+      loading="lazy"
   />
 
-  <section id="works" class="layout mt-12">
-    <h1 id="works" class="font-title col-span-full pb-2 mb-2">works</h1>
+  </section>
+
+
+  <section class="layout mt-12 ">
+    <h1 class="font-title col-span-6 text-justify mb-2 border-b">about me</h1>
+
+    <p class="col-span-5 lg:col-span-3 lg:col-start-2 col-start-2 mb-4 text-xl">
+      I'm an artist from Argentina. I'm currently studying film direction at the
+      University of Cinema of Buenos Aires (UCINE). I love painting, drawing, and
+      creating digital art: I enjoy exploring new technologies and experimenting
+      with different mediums, I'm always looking for new ways to express myself
+      and push the boundaries of what's possible with different tools. to me a
+      computer cursor is the same as a paintbrush. kinda.
+    </p>
+
+    <ul class="col-start-5 col-span-2 overflow-hidden space-y-2 mt-2 text-muted text-sm">
+      <li><a href="https://instagram.com/pdromchado_" target="_blank">@pdromchado_</a></li>
+      <li><a href="mailto:hola@pedromachado.net" target="_blank">hola@pedromachado.net</a></li>
+    </ul>
+
+    <img
+      src="https://cataas.com/cat/gif"
+      alt="a gif of a cat"
+      class="col-start-2 col-span-2 mt-2"
+      height="300"
+      width="300"
+
+      decoding="async"
+        loading="lazy"
+    />
+
+    </section>
+
+  <section id="works" class="layout mt-12 ">
+    <h1 id="works" class="font-title col-span-full mb-2 border-b">works</h1>
 
     <div class="layout text-xs text-muted mb-2">
       <h2 class="col-span-1 text-xs mb-2 order-last">Client</h2>
@@ -96,4 +140,5 @@ import MainLayout from "../layouts/MainLayout.astro";
       </template>
     </div>
   </section>
+
 </MainLayout>
