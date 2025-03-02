@@ -13,7 +13,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  output: "server",
   integrations: [
     alpinejs(),
     vue(),
@@ -24,5 +24,5 @@ export default defineConfig({
     }),
   ],
 
-  adapter: cloudflare(),
+  adapter: vercel(),
 });
