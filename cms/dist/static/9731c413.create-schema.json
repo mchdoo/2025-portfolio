@@ -1,0 +1,83 @@
+[
+  {
+    "fields": [
+      {
+        "name": "value",
+        "type": "string"
+      },
+      {
+        "name": "label",
+        "type": "string"
+      }
+    ],
+    "name": "tag",
+    "type": "object"
+  },
+  {
+    "of": [
+      {
+        "type": "tag"
+      }
+    ],
+    "name": "tags",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "options": {
+          "includeFromRelated": "myTags"
+        },
+        "name": "tags",
+        "type": "tags"
+      }
+    ],
+    "name": "renderType",
+    "type": "document"
+  }
+]

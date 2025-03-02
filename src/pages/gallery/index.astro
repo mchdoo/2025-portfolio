@@ -1,0 +1,30 @@
+---
+import Gallery from "../../components/Gallery.vue";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { sanityClient } from 'sanity:client'
+
+const allRenders = await sanityClient.fetch(`
+  *[_type  == "renderType"] {
+  _id,
+      title,
+      "imageUrl": image.asset->url,
+      "width": image.asset->metadata.dimensions.width,
+      "height": image.asset->metadata.dimensions.height
+  }
+  `);
+---
+
+<MainLayout title="gallery">
+  <h1 class="font-title col-span-2">The Gallery of Galleries</h1>
+  <p class="col-span-3 lg:col-start-5 mb-12">
+    you can find all my personal work here. enjoy. notice i said <i>personal</i
+    >, if you're looking for my professional work, click on <u>works</u> on the menu.
+  </p>
+
+  <section class="layout text-xs mt-2 pt-2 border-t border-muted">
+    <h2 class="col-span-2  mb-2">Artworks</h2>
+    <div class="col-span-6 text-base">
+      <Gallery items={allRenders} client:only />
+    </div>
+  </section>
+</MainLayout>

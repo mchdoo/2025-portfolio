@@ -1,0 +1,65 @@
+---
+import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
+
+
+const { title } = Astro.props;
+
+
+---
+
+<script>
+  import Alpine from "alpinejs";
+  import collapse from "@alpinejs/collapse";
+  import gsap from 'gsap';
+  import barba from "@barba/core";
+
+
+
+  Alpine.plugin(collapse);
+  Alpine.start();
+
+
+barba.init({
+  transitions: [{
+    name: 'opacity-transition',
+    leave(data) {
+      return gsap.to(data.current.container, {
+        opacity: 0
+      });
+    },
+    enter(data) {
+      return gsap.from(data.next.container, {
+        opacity: 0,
+      })
+    }
+  }]
+});
+
+
+</script>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <title>
+      {title === "pedro machado: portfolio" ? title : title + " | pm"}
+    </title>
+  </head>
+  <body data-barba="wrapper" class="absolute">
+    <header>
+      <Navbar />
+    </header>
+    <main class="px-3 layout relative" data-barba="container">
+      <span class="h-[var(--nav-height)] col-span-full"></span>
+      <slot />
+      <span class="h-[var(--nav-height)] col-span-full"></span>
+    <script is:inline src="/src/scripts/p5.js"></script>
+    <script is:inline src="/src/scripts/sketch.js"></script>
+    </main>
+  </body>
+</html>

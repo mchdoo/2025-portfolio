@@ -1,0 +1,18 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+function handleGoHome() {
+  document.location.href = "/";
+}
+
+function handleRefresh() {
+  document.location.reload();
+}
+---
+
+<MainLayout title="not found">
+  <h1 class="main-col text-3xl mb-4 leading-none">Couldn't find that page</h1>
+  <p class="main-col">you can try to:</p>
+
+  <a href="/" class="underline col-start-5"> a) going home </a>
+</MainLayout>

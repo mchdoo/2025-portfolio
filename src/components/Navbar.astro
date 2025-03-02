@@ -1,0 +1,39 @@
+
+<div class="mt-4 w-full px-3 layout min-h-[var(--nav-height)] sticky top-0">
+  <a href="/" class="text-4xl font-title main-col cursor-pointer"
+    >pedro machado</a
+  >
+
+  <div
+    x-data="{show:false}"
+    class="text-left col-start-5 w-fit h-fit text-sm relative overflow-hidden pr-4"
+  >
+    <button class="text-left" @click="show = !show" x-text="show ? 'close' : 'menu'"
+    ></button>
+    <ul x-show="show" @click="show = false" x-collapse class="text-muted mt-1 space-y-4 text-base">
+      <a href="/ ">
+        <li>home</li>
+      </a>
+      <a href="/about">
+        <li>about me</li>
+      </a>
+      <a href="/#works">
+        <li>works</li>
+      </a>
+      <a href="">
+        <li>tools</li>
+      </a>
+      <a href="/gallery">
+        <li>
+          gallery
+          <ul>
+            <li>art</li>
+            <li>design</li>
+            <li>code</li>
+            <li>texts</li>
+          </ul>
+        </li>
+      </a>
+    </ul>
+  </div>
+</div>
