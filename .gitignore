@@ -1,6 +1,14 @@
-.vercel
+.DS_Store
+Thumbs.db
 
-dist
-.node_modules
-.astro
-cms/dist
+.env
+.env.d.ts
+
+dist/
+.astro/
+.sanity/
+.vercel/
+.wrangler/
+
+node_modules/
+pnpm-lock.yaml
