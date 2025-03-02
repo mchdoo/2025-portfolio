@@ -6,10 +6,10 @@ import sanity from "@sanity/astro";
 
 import vercel from "@astrojs/vercel";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
-  prefetch: true,
-
   vite: {
     plugins: [tailwindcss()],
   },
@@ -24,5 +24,5 @@ export default defineConfig({
     }),
   ],
 
-  adapter: vercel(),
+  adapter: cloudflare(),
 });

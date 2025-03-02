@@ -10,6 +10,7 @@
   "dependencies": {
     "@alpinejs/collapse": "^3.14.8",
     "@astrojs/alpinejs": "^0.4.3",
+    "@astrojs/cloudflare": "^12.2.3",
     "@astrojs/vercel": "^8.1.0",
     "@astrojs/vue": "^5.0.7",
     "@barba/core": "^2.10.3",
@@ -22,6 +23,7 @@
     "astro": "^5.4.1",
     "draggabilly": "^3.0.0",
     "gsap": "^3.12.7",
+    "imagesloaded": "^5.0.0",
     "packery": "^2.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

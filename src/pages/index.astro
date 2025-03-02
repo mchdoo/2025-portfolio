@@ -2,7 +2,6 @@
 import MainLayout from "../layouts/MainLayout.astro";
 
 ---
-
 <MainLayout title="pedro machado: portfolio">
 <!-- <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
   <div class="loader"></div>
@@ -14,7 +13,7 @@ import MainLayout from "../layouts/MainLayout.astro";
     <a href="https://instagram.com/pdromchado_" class="underline" target="_blank">dm me</a>
   </p>
 
-    <div x-show="definitionVisible" class="col-start-4 col-span-3 sm:col-span-2 md:col-span-1" x-transition>
+    <div x-transition.opacity x-show="definitionVisible" class="col-start-4 col-span-3 sm:col-span-2 md:col-span-1" x-transition>
             A media artist is someone who creates art using digital technology, multimedia, and various forms of electronic media. This can include video, sound, interactive installations, and digital imagery.
         </div>
 
@@ -53,14 +52,12 @@ import MainLayout from "../layouts/MainLayout.astro";
       class="col-start-2 col-span-2 mt-2"
       height="300"
       width="300"
-
-      decoding="async"
-        loading="lazy"
+    loading="lazy"
     />
 
     </section>
 
-  <section id="works" class="layout mt-12 ">
+  <section id="works" class="mt-12 hidden">
     <h1 id="works" class="font-title col-span-full mb-2 border-b">works</h1>
 
     <div class="layout text-xs text-muted mb-2">
