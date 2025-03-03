@@ -1,33 +1,37 @@
+---
+let timeBA = "...";
+let temperatureBA = "...";
 
-<div class="layout py-3 ">
-  <a href="/" class="text-4xl font-title main-col cursor-pointer mt-auto no-underline"
-    >pedro machado</a
-  >
+await Promise.allSettled([
+  fetch("https://api.open-meteo.com/v1/forecast?latitude=-34.61&longitude=-58.38&current_weather=true")
+    .then(res => res.json())
+    .then(data => {
+      if (data?.current_weather?.temperature) {
+        // Remove extra "°C" here if you add it in the markup.
+        temperatureBA = data.current_weather.temperature;
+      }
+    })
+    .catch(() => console.error("Failed to fetch weather data")),
+]);
 
-  <div
-    x-data="{show:false}"
-    class="text-left col-start-5 w-fit h-fit text-sm relative overflow-hidden pr-4"
-  >
-    <button class="text-left" @click="show = !show" x-text="show ? 'close' : 'menu'"
-    ></button>
-    <ul x-cloak x-show="show" @click="show = false" x-collapse class="text-muted mt-1 space-y-4 text-base">
-      <a href="/ ">
-        <li>home</li>
-      </a>
-      <a href="">
-        <li>tools</li>
-      </a>
-      <a  href="/gallery">
-        <li>
-          gallery
-          <ul>
-            <li>art</li>
-            <li>design</li>
-            <li>code</li>
-            <li>texts</li>
-          </ul>
-        </li>
-      </a>
-    </ul>
-  </div>
+timeBA = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Argentina/Buenos_Aires",
+  hour: "2-digit",
+  minute: "2-digit"
+}).format(new Date());
+---
+<div class="layout" x-data="{ show: false }">
+  <ul @click="show = false" x-bind:class="!show || 'h-[var(--nav-height)] border-b pt-3'" class="bg-white h-0 overflow-hidden transition-all text-black grid grid-cols-6 text-base col-span-6 mb-3">
+    <a href="/" class="col-start-4">home</a>
+    <a aria-disabled="true" class="line-through text-muted cursor-wait">blog</a>
+    <a href="/gallery">gallery</a>
+  </ul>
+  <a href="/" class="text-6xl drop-shadow-[1px_1px_0_white] font-title mix-blend-color-burn cursor-pointer mt-auto no-underline">
+    pedro machado
+  </a>
+  <button class="text-left col-start-5 mb-auto" @click="show = !show" :class="!show || 'text-red-600'" x-text="show ? 'close' : 'menu'"></button>
+
+  <p class="col-start-6 text-right">
+    it's {timeBA} in Buenos Aires, currently {temperatureBA}°C <br> <br> <a class="underline" href="mailto:hola@pedromachado.net">contact me</a>
+  </p>
 </div>

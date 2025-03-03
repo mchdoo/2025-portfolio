@@ -20,6 +20,35 @@
 @theme {
   --font-title: "Xanh Mono", monospace;
   --color-muted: #999;
+  --animate-text: textColor 10s linear infinite;
+  --animate-crazy-color: crazy-color 5s linear infinite;
+
+  @keyframes textColor {
+    0% {
+      color: rgb(255, 0, 10); /* Red */
+    }
+    25% {
+      color: rgb(180, 100, 0); /* Green */
+    }
+    50% {
+      color: rgb(80, 10, 255); /* Blue */
+    }
+    75% {
+      color: rgb(255, 60, 10); /* Yellow */
+    }
+    100% {
+      color: rgb(255, 0, 10); /* Magenta */
+    }
+  }
+
+  @keyframes crazy-color {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
 }
 
 .layout {
@@ -52,10 +81,6 @@ button {
     opacity: 0.5;
     cursor: not-allowed;
   }
-}
-
-img {
-  @apply border;
 }
 
 li {

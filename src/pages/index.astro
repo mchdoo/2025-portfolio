@@ -6,136 +6,32 @@ import MainLayout from "../layouts/MainLayout.astro";
 <!-- <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
   <div class="loader"></div>
 </div> -->
-  <section class="layout" x-data="{definitionVisible: false}">
-  <p class="main col-span-2 mb-12 main-col" >
-    Media artist <button @click="definitionVisible = !definitionVisible">(what is that?)</button><br />
-    <br /> <a href="mailto:pedromachadofulcheri@gmail.com" class="underline" target="_blank">email me</a> <br />
-    <a href="https://instagram.com/pdromchado_" class="underline" target="_blank">dm me</a>
+  <section class="layout mt-12">
+  <p class="animate-text  col-span-4  text-6xl font-title italic" >
+    Media artist from Argentina
   </p>
-
-    <div x-transition.opacity x-show="definitionVisible" class="col-start-4 col-span-3 sm:col-span-2 md:col-span-1" x-transition>
-            A media artist is someone who creates art using digital technology, multimedia, and various forms of electronic media. This can include video, sound, interactive installations, and digital imagery.
-        </div>
-
   <img
     src="/face_photo.png"
     alt="a picture of pedro machado"
-    class="sm:col-span-2 lg:col-span-1 col-span-3 col-start-2 sm:col-start-5 md:col-start-5 lg:col-start-5"
-
-    decoding="async"
-      loading="lazy"
+    class="col-span-2 col-start-5 xl:col-span-1"
   />
+  <ul class="col-start-5 overflow-hidden space-y-3 text-black col-span-1 md:col-start-5  text-sm p-3">
+    <li><a href="https://instagram.com/pdromchado_" target="_blank">@pdromchado_</a></li>
+  </ul>
 
   </section>
 
 
   <section class="layout mt-12 ">
-    <h1 class="font-title col-span-6 text-justify mb-2 border-b">about me</h1>
 
-    <p class="col-span-5 lg:col-span-3 lg:col-start-2 col-start-2 mb-4 text-xl">
-      I'm an artist from Argentina. I'm currently studying film direction at the
+    <p class="col-span-4 lg:col-span-3 lg:col-start-2 col-start-2 mb-4 text-xl">
+     I'm currently studying film direction at the
       University of Cinema of Buenos Aires (UCINE). I love painting, drawing, and
       creating digital art: I enjoy exploring new technologies and experimenting
       with different mediums, I'm always looking for new ways to express myself
       and push the boundaries of what's possible with different tools. to me a
       computer cursor is the same as a paintbrush. kinda.
     </p>
-
-    <ul class="col-start-5 col-span-2 overflow-hidden space-y-2 mt-2 text-muted text-sm">
-      <li><a href="https://instagram.com/pdromchado_" target="_blank">@pdromchado_</a></li>
-      <li><a href="mailto:hola@pedromachado.net" target="_blank">hola@pedromachado.net</a></li>
-    </ul>
-
-    <img
-      src="https://cataas.com/cat/gif"
-      alt="a gif of a cat"
-      class="col-start-2 col-span-2 mt-2"
-      height="300"
-      width="300"
-    loading="lazy"
-    />
-
     </section>
-
-  <section id="works" class="mt-12 hidden">
-    <h1 id="works" class="font-title col-span-full mb-2 border-b">works</h1>
-
-    <div class="layout text-xs text-muted mb-2">
-      <h2 class="col-span-1 text-xs mb-2 order-last">Client</h2>
-      <h2 class="col-span-2 text-xs mb-2">Title</h2>
-      <h2 class="col-span-1 text-xs mb-2 order-first">Location</h2>
-      <h2 class="col-span-1 invisible md:visible">Time</h2>
-    </div>
-
-    <div
-      class="col-span-full"
-      x-data="{
-                            portfolio: [
-                {
-                    title: 'Senior Software Engineer',
-                    company: 'Tech Innovations Inc.',
-                    city: 'San Francisco',
-                    year: '2020-Present',
-                    description: 'Led development of cloud-based enterprise solutions and mentored junior developers.'
-                },
-                {
-                    title: 'Full Stack Developer',
-                    company: 'Digital Solutions Ltd.',
-                    city: 'New York',
-                    year: '2018-2020',
-                    description: 'Developed and maintained full-stack web applications using React and Node.js.'
-                },
-                {
-                    title: 'Frontend Developer',
-                    company: 'Creative Web Studios',
-                    city: 'London',
-                    year: '2016-2018',
-                    description: 'Created responsive web interfaces and improved user experience across multiple projects.'
-                },
-                {
-                    title: 'UI/UX Designer',
-                    company: 'Design Hub',
-                    city: 'Berlin',
-                    year: '2014-2016',
-                    description: 'Designed user interfaces and conducted user research for various client projects.'
-                }
-                            ]
-                        }"
-    >
-      <template
-        x-data="{visible: 0}"
-        x-for="(job, index) in portfolio"
-        :key="job.title"
-      >
-        <div
-          @click="visible = visible == index ? null : index"
-          class="layout text-sm"
-        >
-          <div class="layout pt-2">
-            <div
-              class="col-span-2 md:col-span-1 order-last"
-              x-text="job.company"
-            >
-            </div>
-
-            <div class="col-span-2 font-bold" x-text="job.title"></div>
-
-            <div class="col-span-1 order-first text-xs md:text-base" x-text="job.city"></div>
-
-            <div class="col-span-1 invisible md:visible" x-text="job.year">
-            </div>
-          </div>
-
-          <div
-            class="col-span-2 col-start-2 text-muted "
-            x-show="visible === index"
-            x-collapse
-            x-text="job.description"
-          >
-          </div>
-        </div>
-      </template>
-    </div>
-  </section>
 
 </MainLayout>

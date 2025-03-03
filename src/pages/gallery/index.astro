@@ -17,12 +17,13 @@ const allRenders = await sanityClient.fetch(`
 ---
 
 <MainLayout title="gallery">
-  <h1 class="font-title col-span-2 main-col">The Gallery of Galleries</h1>
-  <p class="col-span-3 lg:col-start-5 mb-12">
-    you can find all my personal work here. enjoy.
+  <h1 class="font-title text-6xl italic col-span-2 mt-12">la Galerie</h1>
+  <p class="col-span-2 col-start-4 mt-auto">
+  I've crafted this gallery to display all of my works: you can see them all scrambled and you can filter by type of work.
   </p>
-  <div class="col-span-6 text-base">
+
+  <div class="col-span-6 mt-6">
     <!-- Keep client:only directive since we're using browser APIs -->
-    <Gallery items={allRenders} client:only />
+    <Gallery items={allRenders} client:load />
   </div>
 </MainLayout>
