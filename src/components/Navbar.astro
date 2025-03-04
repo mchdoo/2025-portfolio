@@ -23,8 +23,8 @@ timeBA = new Intl.DateTimeFormat("en-US", {
 <div class="layout" x-data="{ show: false }">
   <ul @click="show = false" x-bind:class="!show || 'h-[var(--nav-height)] border-b pt-3'" class="bg-white h-0 overflow-hidden transition-all text-black grid grid-cols-6 text-base col-span-6 mb-3">
     <a href="/" class="col-start-4">home</a>
-    <a aria-disabled="true" class="line-through text-muted cursor-wait">blog</a>
     <a href="/gallery">gallery</a>
+    <a href="/cv.pdf" target="_blank">cv</a>
   </ul>
   <a href="/" class="text-6xl drop-shadow-[1px_1px_0_white] font-title mix-blend-color-burn cursor-pointer mt-auto no-underline">
     pedro machado
@@ -32,6 +32,8 @@ timeBA = new Intl.DateTimeFormat("en-US", {
   <button class="text-left col-start-5 mb-auto" @click="show = !show" :class="!show || 'text-red-600'" x-text="show ? 'close' : 'menu'"></button>
 
   <p class="col-start-6 text-right">
-    it's {timeBA} in Buenos Aires, currently {temperatureBA}°C <br> <br> <a class="underline" href="mailto:hola@pedromachado.net">contact me</a>
+  <a class="underline text-sm animate-text" href="mailto:hola@pedromachado.net">contact</a>
+  <br> <br>
+    it's {timeBA} in Buenos Aires, currently {temperatureBA}°C
   </p>
 </div>
