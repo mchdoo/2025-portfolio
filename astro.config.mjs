@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import alpinejs from "@astrojs/alpinejs";
 import vue from "@astrojs/vue";
 import sanity from "@sanity/astro";
+import react from "@astrojs/react";
 
 import vercel from "@astrojs/vercel";
 
@@ -13,7 +14,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  output: "server",
   integrations: [
     alpinejs(),
     vue(),
@@ -21,7 +21,9 @@ export default defineConfig({
       projectId: "vdh771pd",
       dataset: "production",
       useCdn: true,
+      studioBasePath: "/studio",
     }),
+    react(),
   ],
 
   adapter: vercel(),

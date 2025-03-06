@@ -5,10 +5,12 @@ Thumbs.db
 .env.d.ts
 
 dist/
-.astro/
+.ppastro/
 .sanity/
 .vercel/
 .wrangler/
 
 node_modules/
 pnpm-lock.yaml
+
+/cms

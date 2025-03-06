@@ -6,12 +6,11 @@ import { sanityClient } from 'sanity:client'
 
 // Fetch data before rendering
 const allRenders = await sanityClient.fetch(`
-  *[_type  == "renderType"] {
-    _id,
+  *[_type == "sanity.imageAsset" && title != null] {
     title,
-    "imageUrl": image.asset->url,
-    "width": image.asset->metadata.dimensions.width,
-    "height": image.asset->metadata.dimensions.height
+      url,
+      "width": metadata.dimensions.width,
+      "height": metadata.dimensions.height,
   }
 `);
 ---
@@ -19,7 +18,7 @@ const allRenders = await sanityClient.fetch(`
 <MainLayout title="gallery">
   <h1 class="font-title text-6xl italic col-span-6 mt-12">La Galerie</h1>
   <p class="col-span-2 col-start-4 mt-auto text-xl mt-3">
-  I made this gallery to display all of my works: you can see them all scrambled and you can filter by type of work.
+  I made this gallery to display all of my works: you can see them all scrambled and you can filter by type of work. (not yet)
   </p>
 
   <div class="col-span-6 mt-6">

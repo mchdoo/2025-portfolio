@@ -1,0 +1,37 @@
+---
+import { sanityClient } from 'sanity:client';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const {title} = Astro.params;
+
+export async function getStaticPaths() {
+  const paths: [{title: string}] = await sanityClient.fetch(`*[_type == "sanity.imageAsset" && title != null]{title}`);
+
+  return paths.map((path) => ({ params: { title: path.title } }));
+}
+
+const artwork = await sanityClient.fetch(`*[_type == "sanity.imageAsset" && title == $title][0]{title, description, url, "tags": opt.media.tags[]->name.current, "width": metadata.dimensions.width,
+"height": metadata.dimensions.height}`, {title});
+const {description, url, tags, width, height} = artwork;
+const isVertical = height/width == 16/9
+const isHorizontal = width/height == 16/9 || width/height == 4/3
+
+if (!artwork) {
+  return new Response(null, { status: 404 });
+}
+
+---
+
+<MainLayout title={title} nop5>
+<span class="col-span-full h-[var(--nav-height)] lg:hidden"></span>
+<img class={`  shadow ${isVertical ? 'md:col-span-1 col-span-4 md:col-start-2 col-start-2' : isHorizontal ? 'md:col-span-3 col-span-6 col-start-0 md:col-start-2' : 'md:col-start-2 md:col-span-2 col-span-4 col-start-2'}`} src={url} alt={title + " artwork"} />
+
+<div   class={`col-span-4 md:col-span-2 col-start-2 md:ml-3 ${isVertical ? 'md:col-start-3' : isHorizontal ? 'md:col-start-5' : 'md:col-span-2'}`}>
+ <h1 class="text-4xl col-span-6 col-start-2 mt-3 font-medium md:col-span-2 md:col-start-4 lg:col-start-5 md:text-5xl h-fit">{title}</h1>
+  <p class="col-span-4 col-start-2 my-3 text-lg md:col-span-1 lg:w-1/2">{description}</p>
+  <div class="lg:flex flex-col hidden"><span class="mt-3 mb-3"> tags:</span>
+  {tags.map((tag, index) => <span class=" bg-muted/20  text-muted h-fit w-fit text-red-800 p-1">#{tag}</span>)}</div>
+</div>
+  <span class="col-start-2 text-muted md:mt-3 lg:hidden"> tags:</span>
+  {tags.map((tag, index) => <span class="tag bg-muted/20 md:mt-3 text-muted h-fit w-fit text-red-800 p-1 col-start-5 md:col-start-2 lg:hidden">#{tag}</span>)}
+</MainLayout>
