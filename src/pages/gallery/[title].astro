@@ -1,6 +1,8 @@
 ---
+// @ts-ignore
 import { sanityClient } from 'sanity:client';
 import MainLayout from '../../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
 
 const {title} = Astro.params;
 
@@ -24,7 +26,7 @@ if (!artwork) {
 
 <MainLayout title={title} nop5>
 <span class="col-span-full h-[var(--nav-height)] lg:hidden"></span>
-<img class={`  shadow ${isVertical ? 'md:col-span-1 col-span-4 md:col-start-2 col-start-2' : isHorizontal ? 'md:col-span-3 col-span-6 col-start-0 md:col-start-2' : 'md:col-start-2 md:col-span-2 col-span-4 col-start-2'}`} src={url} alt={title + " artwork"} />
+<Image width={width} height={height} loading="eager" class={`  shadow ${isVertical ? 'md:col-span-1 col-span-4 md:col-start-2 col-start-2' : isHorizontal ? 'md:col-span-3 col-span-6 col-start-0 md:col-start-2' : 'md:col-start-2 md:col-span-2 col-span-4 col-start-2'}`} src={url} alt={title + " artwork"} />
 
 <div   class={`col-span-4 md:col-span-2 col-start-2 md:ml-3 ${isVertical ? 'md:col-start-3' : isHorizontal ? 'md:col-start-5' : 'md:col-span-2'}`}>
  <h1 class="text-4xl col-span-6 col-start-2 mt-3 font-medium md:col-span-2 md:col-start-4 lg:col-start-5 md:text-5xl h-fit">{title}</h1>
