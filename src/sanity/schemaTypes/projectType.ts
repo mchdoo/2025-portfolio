@@ -4,7 +4,7 @@ export const projectType = defineType({
   type: "document",
   name: "project",
   fields: [
-    { name: "image", type: "image" },
+    { name: "image", type: "array", of: [{ type: "image" }] },
     {
       name: "title",
       type: "string",
@@ -18,14 +18,32 @@ export const projectType = defineType({
       of: [{ type: "block" }],
       title: "Description",
       description: "A brief description of the project",
-      validation: (Rule) => Rule.required().min(10).max(200),
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: "tools",
+      name: "links",
       type: "array",
-      of: [{ type: "reference", to: { type: "tool" } }],
-      title: "Tools used",
-      description: "What tools were used to create the project",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "url", type: "url" },
+            { name: "label", type: "string" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "type",
+      type: "array",
+      of: [
+        {
+          type: "string",
+          options: { list: ["design", "development", "opus", "video"] },
+        },
+      ],
+      title: "Type",
+      description: "What type of project this one is",
     },
   ],
 });

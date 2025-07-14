@@ -1,5 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import ProjectList from "../components/ProjectList.vue";
+
+//@ts-ignore
+import { sanityClient } from "sanity:client";
+
+const allProjects = await sanityClient.fetch(`
+  *[_type == "project"] {
+  title,
+  description,
+  image[]{"url": asset->url},
+  links,
+  type[]
+  }
+`);
 
 ---
 <MainLayout title="pedro machado: portfolio" namespace="home">
@@ -25,13 +39,10 @@ import MainLayout from "../layouts/MainLayout.astro";
   <section class="layout mt-12 ">
 
     <p class="col-span-4 lg:col-span-3 lg:col-start-2 col-start-2 mb-4 text-xl">
-     I'm currently studying film direction at the
-      University of Cinema of Buenos Aires (UCINE). I love painting, drawing, and
-      creating digital art: I enjoy exploring new technologies and experimenting
-      with different mediums, I'm always looking for new ways to express myself
-      and push the boundaries of what's possible with different tools. to me a
-      computer cursor is the same as a paintbrush. kinda.
+        Film student at <a class="animate-text" href="https://www.ucine.edu.ar/" target="_blank">UCINE (Universided del Cine).</a> Keen for composition, both harmonious and antiesthetic. I know how to do a lot of things with computers; you can see some examples of my works below.
     </p>
     </section>
+
+    <ProjectList projects={allProjects} client:only/>
 
 </MainLayout>
